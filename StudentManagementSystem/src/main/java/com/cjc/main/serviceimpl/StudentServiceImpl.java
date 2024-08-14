@@ -2,6 +2,8 @@ package com.cjc.main.serviceimpl;
 
 import java.util.Optional;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,22 +12,58 @@ import com.cjc.main.repository.StudentRepository;
 import com.cjc.main.servicei.StudentServiceI;
 
 @Service
-public class StudentServiceImpl implements StudentServiceI{
-	
-	
-	@Autowired private StudentRepository reposiroty;
+public class StudentServiceImpl implements StudentServiceI {
 
-	@Override
-	public Student updatedetail(int studentRollNumber, Student stu) {
-		Optional<Student> student =reposiroty.findById(studentRollNumber);
-		if(student.isPresent()) 
-		{
-			Student updatestu = student.get();
-			updatestu.setStudentRollNumber(studentRollNumber);
-			return reposiroty.save(stu);
-			
+	@Autowired
+	private StudentRepository reposiroty;
+
+
+		@Override
+		public String deleteStudentByRollno(int studentRollNumber) {
+
+			reposiroty.deleteById(studentRollNumber);
+			return "successfully deleted";
 		}
-		return null;
-	}
+
+		@Override
+		public Student getStudentDetails(int studentRollNumber) {
+
+			return reposiroty.findById(studentRollNumber).get();
+
+		}
+
+		public Student saveStudentData(Student student) {
+
+			return reposiroty.save(student);
+		}
+
+		public List<Student> getAllStudent() {
+
+			return reposiroty.findAll();
+
+		}
+
+		@Override
+		public Student getSingleStudent(String studentName) {
+
+			return reposiroty.findByStudentName(studentName);
+
+		}
+
+		@Override
+		public Student updatedetail(int studentRollNumber, Student stu) {
+			Optional<Student> student = reposiroty.findById(studentRollNumber);
+			if (student.isPresent()) {
+				Student updatestu = student.get();
+				updatestu.setStudentRollNumber(studentRollNumber);
+				return reposiroty.save(stu);
+
+			}
+			return null;
+		}
+
+	
+
+
 
 }

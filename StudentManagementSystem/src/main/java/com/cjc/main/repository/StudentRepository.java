@@ -7,4 +7,6 @@ import com.cjc.main.model.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer>{
 
+	Student findByStudentName(String studentName);
+
 }
