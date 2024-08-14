@@ -1,6 +1,11 @@
 package com.cjc.main.serviceimpl;
 
+
 import java.util.Optional;
+
+
+
+
 
 import java.util.List;
 
@@ -13,17 +18,32 @@ import com.cjc.main.repository.StudentRepository;
 import com.cjc.main.servicei.StudentServiceI;
 
 @Service
-public class StudentServiceImpl implements StudentServiceI{
-	
-	@Autowired private StudentRepository reposiroty;
+public class StudentServiceImpl implements StudentServiceI {
+
+	@Autowired
+	private StudentRepository reposiroty;
 
 	@Override
+	public String deleteStudentByRollno(int studentRollNumber) {
+
+		reposiroty.deleteById(studentRollNumber);
+		return "successfully deleted";
+	}
+
+	
+
 
 	public Student getStudentDetails(int studentRollNumber) {
-		Optional<Student> option=reposiroty.findById(studentRollNumber);
 		
-			Student studentRef=option.get();
-			return studentRef;}
+     
+			
+			return reposiroty.findById(studentRollNumber).get();
+		
+		
+	}
+		
+		
+
 	
 
      public Student saveStudentData(Student student) {
@@ -34,7 +54,16 @@ public class StudentServiceImpl implements StudentServiceI{
 	public List<Student> getAllStudent() {
 		
 		return reposiroty.findAll();
+		}
 
+
+
+
+	
+	@Override
+	public Student getSingleStudent(String studentName) {
+		
+		return reposiroty.findByStudentName(studentName);
 
 	}
 
