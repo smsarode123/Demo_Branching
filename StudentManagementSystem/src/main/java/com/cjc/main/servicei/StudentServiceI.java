@@ -19,4 +19,10 @@ public interface StudentServiceI {
 	List<Student> getAllStudent();
 
 
+	String deleteStudentByRollno(int studentRollNumber);
+
+
+	
+
+
 }
