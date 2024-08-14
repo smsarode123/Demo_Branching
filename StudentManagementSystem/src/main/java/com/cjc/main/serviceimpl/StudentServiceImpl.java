@@ -15,9 +15,15 @@ public class StudentServiceImpl implements StudentServiceI{
 	@Autowired private StudentRepository reposiroty;
 
 	@Override
+     public Student saveStudentData(Student student) {
+		
+		return reposiroty.save(student);
+	}
+
 	public List<Student> getAllStudent() {
 		
 		return reposiroty.findAll();
+
 	}
 
 }
