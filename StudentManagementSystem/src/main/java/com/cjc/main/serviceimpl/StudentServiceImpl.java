@@ -1,8 +1,11 @@
 package com.cjc.main.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cjc.main.model.Student;
 import com.cjc.main.repository.StudentRepository;
 import com.cjc.main.servicei.StudentServiceI;
 
@@ -10,5 +13,11 @@ import com.cjc.main.servicei.StudentServiceI;
 public class StudentServiceImpl implements StudentServiceI{
 	
 	@Autowired private StudentRepository reposiroty;
+
+	@Override
+	public List<Student> getAllStudent() {
+		
+		return reposiroty.findAll();
+	}
 
 }
