@@ -1,7 +1,7 @@
 package com.cjc.main.serviceimpl;
 
 
-import java.util.Optional;
+
 
 import java.util.List;
 
@@ -46,6 +46,12 @@ public class StudentServiceImpl implements StudentServiceI {
 		
 		return reposiroty.findAll();
 
+	}
+
+	@Override
+	public Student getSingleStudent(String studentName) {
+		
+		return reposiroty.findByStudentName(studentName);
 	}
 
 }
